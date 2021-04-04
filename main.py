@@ -1,5 +1,5 @@
 import sys 
-from PyQt5 import QtWidgets, QtGui
+from PyQt5 import QtWidgets, QtGui, QtCore
 import ui.mainWindow as mainWindow
 import ui.dataWindow as dataWindow
 import weather
@@ -31,7 +31,7 @@ class WeatherDataWindow(QtWidgets.QMainWindow, dataWindow.Ui_MainWindow):
             self.cityLabel.setText("Current city")
         else:
             self.cityLabel.setText(place)
-        self.timeLabel.setText(data['time'].strftime("%H:%M:%S"))
+        self.timeLabel.setText(data['time'].strftime("%H:%M"))
         self.temperatureLabel.setText(data['temp']['temp'] + "°")
         self.statusLabel.setText(data['status'])
         self.max_minLabel.setText((data['temp']['temp_min'] + "°/" + 
@@ -44,7 +44,9 @@ class WeatherDataWindow(QtWidgets.QMainWindow, dataWindow.Ui_MainWindow):
             list_children = list_box[i].children()
             list_data_for_child = list_data[i]
             list_children[0].setText(list_data_for_child[0])
+            list_children[0].setAlignment(QtCore.Qt.AlignCenter)
             list_children[1].setText(list_data_for_child[1]['temp'] + "°")
+            list_children[1].setAlignment(QtCore.Qt.AlignCenter)
             list_children[2].setPixmap(QtGui.QPixmap(f"./img/{list_data_for_child[2]}.png"))
             list_children[2].setScaledContents(True)
 

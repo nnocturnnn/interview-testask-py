@@ -38,7 +38,7 @@ def get_own_three_hour(place):
     list_wether = []
     for i in forecast:
         data_list = []
-        data_list.append(i.get_reference_time('date').strftime("%H:%M:%S"))
+        data_list.append(i.get_reference_time('date').strftime("%H:%M"))
         data_list.append(i.get_temperature("celsius"))
         for key in data_list[1]:
             try:
