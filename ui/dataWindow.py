@@ -15,10 +15,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
-        MainWindow.setStyleSheet("background: rgb(70,160,180)\n"
-"\n"
-"\n"
-"")
+        MainWindow.setStyleSheet("background: rgb(70,160,180)\n")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.nowBox = QtWidgets.QGroupBox(self.centralwidget)
