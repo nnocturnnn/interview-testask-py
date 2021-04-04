@@ -15,7 +15,10 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
-        MainWindow.setStyleSheet("background: url(./img/back.jpeg)\n")
+        MainWindow.setStyleSheet("background: rgb(70,160,180)\n"
+"\n"
+"\n"
+"")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.nowBox = QtWidgets.QGroupBox(self.centralwidget)
@@ -25,7 +28,7 @@ class Ui_MainWindow(object):
         self.nowBox.setObjectName("nowBox")
         self.cityLabel = QtWidgets.QLabel(self.nowBox)
         self.cityLabel.setGeometry(QtCore.QRect(40, 15, 211, 31))
-        self.cityLabel.setStyleSheet("background-color:transpanent")
+        self.cityLabel.setStyleSheet("background-color:rgba(r, g, b, alpha);")
         self.cityLabel.setText("")
         self.cityLabel.setObjectName("cityLabel")
         self.timeLabel = QtWidgets.QLabel(self.nowBox)
@@ -141,6 +144,5 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Weather"))
         self.pushButton.setText(_translate("MainWindow", "back"))
-        self.cityLabel.setText(_translate("MainWindow", "hui"))

@@ -18,11 +18,10 @@ class WeatherMainWindow(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         
 
 class WeatherDataWindow(QtWidgets.QMainWindow, dataWindow.Ui_MainWindow):
-    data = ""
     def __init__(self,data):
         super().__init__()
         self.setupUi(self)
-        self.data = data
+        
         self.pushButton.clicked.connect(self.gotoMainWindow)
 
     def gotoMainWindow(self):

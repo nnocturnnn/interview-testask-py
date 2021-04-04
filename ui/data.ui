@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background: url(/Users/asydoruk/Desktop/TestPy/img/back.jpeg)
+   <string notr="true">background: rgb(70,160,180)
 
 
 </string>
