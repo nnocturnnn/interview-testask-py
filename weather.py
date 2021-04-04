@@ -1,5 +1,4 @@
 import pyowm 
-import datetime
 import geocoder
 import os
 
@@ -18,7 +17,7 @@ def get_owm_now(place):
         observation = owm.weather_at_place(place)
         w = observation.get_weather()
     data_dict = {}
-    data_dict['time'] = datetime.datetime.fromtimestamp(observation.get_reception_time())
+    data_dict['time'] = observation.get_reception_time('date')
     data_dict['temp'] = w.get_temperature("celsius")
     for key in data_dict['temp']:
         try:
@@ -28,3 +27,26 @@ def get_owm_now(place):
     data_dict['status'] = w.get_detailed_status()
     return data_dict
 
+def get_own_three_hour(place):
+    if not place:
+        g = geocoder.ip('me')
+        observation = owm.three_hours_forecast_at_coords(g.latlng[0],g.latlng[1])
+        forecast = observation.get_forecast()
+    else:
+        observation = owm.three_hours_forecast(place)
+        forecast = observation.get_forecast()
+    list_wether = []
+    for i in forecast:
+        data_list = []
+        data_list.append(i.get_reference_time('date').strftime("%H:%M:%S"))
+        data_list.append(i.get_temperature("celsius"))
+        for key in data_list[1]:
+            try:
+                data_list[1][key] = toFixed(data_list[1][key],1)
+            except:
+                continue
+        data_list.append(i.get_detailed_status())
+        list_wether.append(data_list)
+    return list_wether
+        
+    

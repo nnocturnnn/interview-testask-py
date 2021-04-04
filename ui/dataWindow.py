@@ -15,12 +15,13 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
-        MainWindow.setStyleSheet("background: rgb(70,160,180)\n")
+        MainWindow.setStyleSheet("background: rgb(38,40,51)\n")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.nowBox = QtWidgets.QGroupBox(self.centralwidget)
         self.nowBox.setGeometry(QtCore.QRect(20, 50, 761, 261))
-        self.nowBox.setStyleSheet("background-color:rgba(r, g, b, alpha);")
+        self.nowBox.setStyleSheet("background-color:rgba(r, g, b, alpha);\n"
+                                    "color:white;")
         self.nowBox.setTitle("")
         self.nowBox.setObjectName("nowBox")
         self.cityLabel = QtWidgets.QLabel(self.nowBox)
