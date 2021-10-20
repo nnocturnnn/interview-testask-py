@@ -5,7 +5,6 @@ from aiogram import executor, Dispatcher
 import db
 from loader import dp
 import handlers
-import states
 
 
 async def on_startup(dp: Dispatcher) -> None:
