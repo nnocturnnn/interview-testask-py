@@ -1,12 +1,9 @@
-import string
 import random
+import string
 
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import NoSuchElementException   
+from selenium.common.exceptions import NoSuchElementException
 from webdriver_manager.chrome import ChromeDriverManager
-
 
 
 def check_exists_by_xpath(xpath: str, driver: webdriver) -> bool:
@@ -28,18 +25,18 @@ def run_tests(driver: webdriver) -> None:
     driver.find_element_by_xpath("//a[contains(text(),'Команда')]").click()
     driver.implicitly_wait(5)
     driver.find_element_by_xpath(
-      "//a[contains(text(),'Стать частью команды')]").click()
+        "//a[contains(text(),'Стать частью команды')]").click()
     driver.implicitly_wait(5)
     driver.switch_to.window(driver.window_handles[1])
     assert(driver.title.startswith("Работа в Netpeak"))
     assert(check_exists_by_xpath(
-      "//a[contains(text(),'Я хочу работать в Netpeak')]", driver))
+        "//a[contains(text(),'Я хочу работать в Netpeak')]", driver))
     assert(driver.find_element_by_xpath(
-      "//a[contains(text(),'Я хочу работать в Netpeak')]").is_enabled())
+        "//a[contains(text(),'Я хочу работать в Netpeak')]").is_enabled())
     driver.switch_to.window(driver.window_handles[0])
     driver.find_element_by_xpath("//a[contains(text(),'Личный каби')]").click()
     assert(check_exists_by_xpath("//span[contains(text(),'Войти')]",
-      driver) == False)
+                                 driver) == False)
     driver.switch_to.window(driver.window_handles[2])
     login = driver.find_element_by_name("login")
     passwd = driver.find_element_by_name("password")
@@ -47,13 +44,14 @@ def run_tests(driver: webdriver) -> None:
     passwd.send_keys(get_random_string(10))
     driver.find_element_by_xpath("//md-checkbox[@aria-label='gdpr']").click()
     driver.find_element_by_xpath("//span[contains(text(),'Войти')]").click()
-    assert(check_exists_by_xpath("//span[@class='md-toast-text ng-binding']", 
-      driver))
+    assert(check_exists_by_xpath("//span[@class='md-toast-text ng-binding']",
+                                 driver))
     assert(len(driver.find_elements_by_xpath(
-      "//md-input-container[@class='input-container md-input-invalid']")) == 2)
+        "//md-input-container[@class='input-container md-input-invalid']")) == 2)
 
 
 if __name__ == "__main__":
-    driver = webdriver.Chrome(ChromeDriverManager().install()) 
+    driver = webdriver.Chrome(ChromeDriverManager().install())
     run_tests(driver)
+    driver.quit()
     print("All tests done")
