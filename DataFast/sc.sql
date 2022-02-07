@@ -1,3 +1,2 @@
-SELECT category_name HAVING AVG(cost) > 500  FROM `aderts` 
-INNER JOIN `costs` 
-ON `aderts`.`aderts_id`=`costs`.`aderts_id`;
+SELECT location FROM INNER JOIN employee ON employee.f_key = location.id 
+WHERE f_name LIKE  "Vasya";
