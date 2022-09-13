@@ -1,8 +1,10 @@
-from pydantic import BaseModel
 from typing import List
 
+from pydantic import BaseModel
+
+
 class User(BaseModel):
-    id: int 
+    id: int
     name: str
     age: int
     email: str
@@ -21,6 +23,7 @@ class Game(BaseModel):
 
 class UserOut(User):
     games: List[Game]
+
 
 class GamesOut(Game):
     users: List[User]
