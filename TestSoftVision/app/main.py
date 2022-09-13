@@ -3,6 +3,7 @@ from starlette.responses import RedirectResponse
 from sqlalchemy.orm import Session
 from faker import Faker
 import random
+from typing import List
 
 from .database import SessionLocal, engine
 
@@ -23,22 +24,15 @@ def load_db():
         db.close()
 
 
-
-@app.get("/" ,status_code=status.HTTP_200_OK)
-def index():
-    return ""
-
-
-@app.get("/get_games", response_model=schemas.GamesOut)
-def featch_games():
+@app.get("/get_games", response_model=List[schemas.GamesOut])
+def featch_games(db: Session = Depends(load_db)):
     games = queries.fetch_games_from_db(db)
     return games
 
-@app.get("/get_me", response_model=schemas.User)
+@app.get("/get_me", response_model=schemas.UserOut)
 def featch_user(db: Session = Depends(load_db)):
     user = queries.fetch_user_with_games_from_db(db)
-    back_schemas = schemas.UserOut.from_orm(user)
-    return back_schemas
+    return user
     
 
 @app.post("/create_user", status_code=status.HTTP_201_CREATED)
@@ -62,18 +56,9 @@ def create_connect(game: schemas.Game, db: Session = Depends(load_db)):
     user = queries.fetch_user_from_db(db)
     game = models.Game(**game.dict())
     user.games.append(game)
+    db.commit()
     return game
 
-
-if __name__ == "__main__":
-    from fastapi.testclient import TestClient
-
-    client = TestClient(api)
-    data  = """{"name" : "Diablo 3"}"""
-    response = client.post("/create_user")
-    response = client.post("/connect_to_game")
-    response = client.get("/get_games")
-    print(response)
 
     
     
