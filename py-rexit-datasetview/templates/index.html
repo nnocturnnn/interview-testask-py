@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web View</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container text-center">
+        <h1>Upload a CSV File</h1>
+        <form method="POST" enctype="multipart/form-data" class="d-inline-block">
+            <div class="form-group">
+                <label for="csvFile">Choose a CSV File</label>
+                <input type="file" class="form-control-file" name="csv" id="csvFile">
+                <button type="submit" class="btn btn-light">Upload</button>
+            </div>
+        </form>
+    </div>
+    <div class="container text-center">
+        <h2>Data Filter</h2>
+        <form method="GET" class="form-inline">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="category">Category:</label>
+                    <input type="text" name="category" class="form-control" id="category">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="gender">Gender:</label>
+                    <select name="gender" class="form-control" id="gender">
+                        <option value="">All</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" name="dob" class="form-control" id="dob">
+                </div>
+
+                <div class="form-group col-md-1">
+                    <label for="minAge">Min Age:</label>
+                    <input type="number" name="min_age" class="form-control" id="minAge">
+                </div>
+
+                <div class="form-group col-md-1">
+                    <label for="maxAge">Max Age:</label>
+                    <input type="number" name="max_age" class="form-control" id="maxAge">
+                </div>
+
+                <div class="form-group col-md-1">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-primary form-control">Apply Filters</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="container">
+        <h1>Data View</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Birth Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data %}
+                {% for item in data %}
+                    <tr>
+                        <td>{{ item.category }}</td>
+                        <td>{{ item.firstname }}</td>
+                        <td>{{ item.lastname }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.gender }}</td>
+                        <td>{{ item.dob }}</td>
+                    </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+        <ul class="pagination">
+            {% if data %}
+            {% if page > 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page - 1 }}">Previous</a>
+                </li>
+            {% endif %}
+            {% if data|length >= per_page %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page + 1 }}">Next</a>
+                </li>
+            {% endif %}
+            {% endif %}
+        </ul>
+    </div>
+</body>
+</html>
