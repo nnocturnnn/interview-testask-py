@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add contact</title>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container-fluid">
+    <h3>Please fill the fields</h3>
+
+    <form method="post" class="form-horizontal">
+        {% csrf_token %}
+        <div class="form-group">
+
+            <label class="control-label col-sm-8" for="full_name">Full name : </label>
+            <div class="col-sm-4">
+                <input type="text" name="full_name" class="form-control" id="full_name" placeholder="Full Name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-8" for="nick_name">Nick name : </label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="nick_name" name="nick_name" placeholder="Nick Name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-8" for="phone_number">Phone Number : </label>
+            <div class="col-sm-4">
+                <input type="text" name="phone_number" class="form-control" id="phone_number"
+                       placeholder="phone_number">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-8" for="address">Address : </label>
+            <div class="col-sm-4">
+                <input type="text" name="address" class="form-control" id="address" placeholder="address">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-8" for="date_of_birth">Date of Birth : </label>
+            <div class="col-sm-4">
+                <input type="text" name="date_of_birth" class="form-control" id="date_of_birth"
+                       placeholder="date_of_birth">
+            </div>
+        </div>
+
+        <div class="col-sm-offset-8 col-sm-4">
+            <input class="btn btn-default" type="submit" value="Save">
+        </div>
+
+    </form>
+</div>

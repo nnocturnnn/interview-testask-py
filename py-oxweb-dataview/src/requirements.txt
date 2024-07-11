@@ -1,0 +1,13 @@
+fastapi==0.68.0
+uvicorn==0.13.4
+asyncpg==0.24.0
+databases==0.4.3
+httpx==0.19.0
+tortoise-orm==0.17.6
+aerich==0.5.7
+asyncpg==0.24.0
+
+
+# dev
+pytest==6.2.4
+requests==2.26.0
